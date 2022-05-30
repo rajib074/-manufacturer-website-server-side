@@ -179,6 +179,19 @@ app.get('/all-orders', async (req, res) => {
           res.send({ clientSecret: paymentIntent.client_secret })
       });
 
+      // Post Reviews
+      app.post('/add-review', async (req, res) => {
+        const review = req.body;
+        await reviewCollection.insertOne(review);
+        res.send({ success: true });
+    });
+
+    //get all reviews
+    app.get('/reviews', async (req, res) => {
+        const result = await reviewCollection.find({}).toArray();
+        res.send(result);
+    })
+
 
 
 
