@@ -155,6 +155,30 @@ app.get('/all-orders', async (req, res) => {
           res.send(updatedOrder);
       })
 
+        //shipping
+        app.patch('/ship-order/:id', async (req, res) => {
+          const id = req.params.id;
+          const query = { _id: ObjectId(id) };
+          const updateDoc = {
+              $set: { shipped: true },
+          };
+          const result = await orderCollection.updateOne(query, updateDoc);
+          res.send({ success: true });
+      });
+
+      //payment
+      app.post('/create-payment-intent', verifyJWT, async (req, res) => {
+          const service = req.body;
+          const price = service.totalPrice;
+          const amount = price * 100;
+          const paymentIntent = await stripe.paymentIntents.create({
+              amount: amount,
+              currency: 'usd',
+              payment_method_types: ['card']
+          });
+          res.send({ clientSecret: paymentIntent.client_secret })
+      });
+
 
 
 
