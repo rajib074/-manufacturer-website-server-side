@@ -87,6 +87,24 @@ async function run() {
         res.send(result);
     });
 
+    //update service
+    app.put('/tools/:id', async (req, res) => {
+      const { id } = req.params;
+      const query = { _id: ObjectId(id) };
+      const newService = req.body;
+      const { available } = newService;
+      const options = { upsert: true };
+      const updateDoc = {
+          $set: { available },
+      };
+      const result = await toolsCollection.updateOne(query, updateDoc, options);
+      res.send({ message: 'updated' });
+  });
+
+
+
+
+
 
 
     }
