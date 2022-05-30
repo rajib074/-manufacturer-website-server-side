@@ -102,6 +102,23 @@ async function run() {
   });
 
 
+   //specific order by query 
+   app.get('/orders', verifyJWT, async (req, res) => {
+    const email = req.query.email;
+    const query = { email: email };
+    const result = await orderCollection.find(query).toArray();
+    res.send(result);
+});
+
+//specific order by query 
+app.get('/order/:id', verifyJWT, async (req, res) => {
+    const { id } = req.params;
+    const query = { _id: ObjectId(id) };
+    const result = await orderCollection.findOne(query);
+    res.send(result);
+});
+
+
 
 
 
