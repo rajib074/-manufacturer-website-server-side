@@ -12,12 +12,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/programming-hero-web-course1/manufacturer-website-server-side-shakibdshy.git"
+    "url": "git+https://github.com/programming-hero-web-course1/manufacturer-website-server-side-rajib074.git"
   },
   "bugs": {
-    "url": "https://github.com/programming-hero-web-course1/manufacturer-website-server-side-shakibdshy/issues"
+    "url": "https://github.com/programming-hero-web-course1/manufacturer-website-server-side-rajib074/issues"
   },
-  "homepage": "https://github.com/programming-hero-web-course1/manufacturer-website-server-side-shakibdshy#readme",
+  "homepage": "https://github.com/programming-hero-web-course1/manufacturer-website-server-side-rajib074#readme",
   "description": "",
   "dependencies": {
     "@stripe/stripe-js": "^1.31.0",
