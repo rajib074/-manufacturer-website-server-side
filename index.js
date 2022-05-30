@@ -191,6 +191,19 @@ app.get('/all-orders', async (req, res) => {
         const result = await reviewCollection.find({}).toArray();
         res.send(result);
     })
+     //for user and setting up jwt
+     app.put('/user/:email', async (req, res) => {
+      const email = req.params.email;
+      const user = req.body;
+      const filter = { email: email };
+      const options = { upsert: true };
+      const updateDoc = {
+          $set: user,
+      };
+      const result = await userCollection.updateOne(filter, updateDoc, options);
+      const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET)
+      res.send({ result, token });
+  });
 
 
 
