@@ -258,7 +258,7 @@ async function run() {
       const user = await userCollection.findOne({ email: email });
       const isAdmin = user.role === "admin";
       res.send({ admin: isAdmin });
-    });
+    }); 
 
     //getting all users for admin
     app.get("/all-users", async (req, res) => {
