@@ -226,6 +226,33 @@ app.put('/user-info-update/:email', verifyJWT, verifyAdmin, async (req, res) => 
     res.send({ success: true });
 });
 
+ //adding more info of an user
+ app.put('/user-update/:email', verifyJWT, verifyAdmin, async (req, res) => {
+  const email = req.params.email;
+  const filter = { email: email };
+  const options = { upsert: true };
+  const updateDoc = {
+      $set: { role: 'admin' },
+  };
+  const result = await userCollection.updateOne(filter, updateDoc, options);
+  // const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET)
+  res.send({ success: true });
+});
+
+//user admin or not
+app.get('/admin/:email', async (req, res) => {
+  const email = req.params.email;
+  const user = await userCollection.findOne({ email: email });
+  const isAdmin = user.role === 'admin';
+  res.send({ admin: isAdmin })
+})
+
+//getting all users for admin
+app.get('/all-users', async (req, res) => {
+  const users = await userCollection.find({}).toArray();
+  res.send(users);
+});
+
 
 
 
