@@ -79,6 +79,16 @@ async function run() {
           res.send({ success: true })
       })
 
+      //single service
+      app.get('/tools/:id', async (req, res) => {
+        const { id } = req.params;
+        const query = { _id: ObjectId(id) };
+        const result = await toolsCollection.findOne(query)
+        res.send(result);
+    });
+
+
+
     }
     finally { }
 }
