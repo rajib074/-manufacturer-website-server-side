@@ -37,11 +37,12 @@ async function run() {
   try {
     await client.connect();
     console.log("Connected to MongoDB");
-    const toolsCollection = client.db("vitac").collection("tools");
-    const reviewCollection = client.db("vitac").collection("reviews");
-    const userCollection = client.db("vitac").collection("users");
-    const orderCollection = client.db("vitac").collection("orders");
-    const paymentCollection = client.db("vitac").collection("payments");
+    const toolsCollection = client.db("Vitac").collection("tools");
+    console.log(toolsCollection)
+    const reviewCollection = client.db("Vitac").collection("reviews");
+    const userCollection = client.db("Vitac").collection("users");
+    const orderCollection = client.db("Vitac").collection("orders");
+    const paymentCollection = client.db("Vitac").collection("payments");
 
     const verifyAdmin = async (req, res, next) => {
       const requester = req.decoded.email;
