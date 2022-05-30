@@ -72,7 +72,12 @@ async function run() {
             const result = await toolsCollection.insertOne(tool);
             res.send({ success: true });
         })
-
+        //delete Tools
+        app.delete('/tools/:id', async (req, res) => {
+          const id = req.params.id;
+          const result = await toolsCollection.deleteOne({ _id: ObjectId(id) });
+          res.send({ success: true })
+      })
 
     }
     finally { }
